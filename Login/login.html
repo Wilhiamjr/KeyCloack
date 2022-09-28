@@ -42,31 +42,52 @@
           background-image: linear-gradient(to right, #f2b263, #f26835);
         }
       }
+      button {
+        background-image: linear-gradient(to right, #f8981d, #ff325f);
+        border-radius: 5px;
+        border: solid 1px silver;
+        height: 30px;
+        pointer-events: all;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        cursor: pointer;
+        color: white;
+      }
+      button:hover {
+        background-image: Linear-gradient(to right, #f8991de1, #ff325de1);
+      }
+      img{
+        border-radius: 4px;
+        box-sizing:border-box;
+      }
     </style>
   </head>
   <body>
     <div class="flex flex-row justify-content-center mt-8">
-      <div class=" w-3 p-6 bg-white">
-        <h3>Entre em sua conta</h3>
-        <div class="field mr-3">
+      <div class="w-3 p-6 bg-white-alpha-70 border-top-3 border-orange-500">
+        <!-- <img src="./img/download.jpeg" width="80%" height="50px" alt=""> -->
+        <h3 class="text-50">Entre em sua conta</h3>
+        <div class="field mr-3 fadeinleft animation-duration-300">
           <label for="Usuario">Usuario</label>
           <input
             id="Usuario"
             type="text"
-            class=" p-2 w-full"
+            class="p-2 w-full border-none outline-none focus:bg-white-alpha-70 shadow-5"
           />
         </div>
-        <div class="field mr-3">
+        <div class="field mr-3 fadeoutleft">
           <label for="senha">Senha</label>
           <input
             id="senha"
             type="password"
-            class=" p-2  w-full"
+            class="p-2 w-full border-none outline-none focus:bg-white-alpha-70 shadow-5 animation-duration-300"
           />
+        </div>
+        <div>
+          <button class="w-full">Entrar</button>
         </div>
       </div>
     </div>
-
     <script></script>
   </body>
 </html>
