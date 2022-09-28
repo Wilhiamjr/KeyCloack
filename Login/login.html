@@ -56,13 +56,31 @@
       button:hover {
         background-image: Linear-gradient(to right, #f8991de1, #ff325de1);
       }
-      img{
+      img {
         border-radius: 4px;
-        box-sizing:border-box;
+        box-sizing: border-box;
       }
     </style>
+    <script src="./keycloak.js"></script>
+    <script>
+      function initKeycloak() {
+        const keycloak = new Keycloak({
+          url: "http://localhost:8080/auth/realms/PosMarketing/account/#/",
+          realm: "PosMarketing",
+          clientId: "PosMarketing",
+        });
+        keycloak
+          .init()
+          .then(function (authenticated) {
+            alert(authenticated ? "authenticated" : "not authenticated");
+          })
+          .catch(function () {
+            alert("failed to initialize");
+          });
+      }
+    </script>
   </head>
-  <body>
+  <body onload="initKeycloak()">
     <div class="flex flex-row justify-content-center mt-8">
       <div class="w-3 p-6 bg-white-alpha-70 border-top-3 border-orange-500">
         <!-- <img src="./img/download.jpeg" width="80%" height="50px" alt=""> -->
@@ -88,6 +106,5 @@
         </div>
       </div>
     </div>
-    <script></script>
   </body>
 </html>
