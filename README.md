@@ -1,2 +1,2 @@
-:#Autenticação usando **KEYCLOAK**:
+#Autenticação usando **KEYCLOAK**
 
