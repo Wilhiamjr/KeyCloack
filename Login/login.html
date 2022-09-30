@@ -65,16 +65,19 @@
     <script>
       function initKeycloak() {
         const keycloak = new Keycloak({
-          url: "http://localhost:8080/auth/realms/PosMarketing/account/#/",
+          url: "http://localhost:8080",
           realm: "PosMarketing",
-          clientId: "PosMarketing",
-        });
-        keycloak
-          .init()
+          clientId: "posmarketing",
+        }
+        );
+        keycloak.init({
+            onLoad: "login-required",
+          })
           .then(function (authenticated) {
             alert(authenticated ? "authenticated" : "not authenticated");
           })
-          .catch(function () {
+          .catch(function (error) {
+            console.log('Errokeycloak',error)
             alert("failed to initialize");
           });
       }
