@@ -1,0 +1,42 @@
+version: "3"
+
+volumes:
+  mariadb_data:
+    driver: local
+
+services:
+  db:
+   image: mariadb
+   restart: always
+   volumes:
+      - mariadb_data:/var/lib/mariadb/data
+   environment:
+    MARIADB_ROOT_PASSWORD: password
+    MARIADB_DATABASE: keycloak
+    MARIADB_PASSWORD: password
+    MARIADB_USER: keycloak
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3606:8080
+  keycloak:
+      image: quay.io/keycloak/keycloak:19.0.3
+      environment:
+        KC_DB: mariadb
+        KC_DB_URL_DATABASE: keycloak
+        KC_DB_USER: keycloak
+        KC_DB_SCHEMA: keycloak
+        KC_DB_PASSWORD: password
+        KC_DB_URL_HOST: db
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: Pa55w0rd
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+        # JDBC_PARAMS: "ssl=false"
+      command: start-dev
+      ports:
+        - 8080:8080
+      depends_on:
+        - db
